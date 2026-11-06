@@ -142,10 +142,9 @@ export default function NavigationUI({
         </button>
 
         <button
-          onClick={onToggleTheme || (() => alert("야니네코 캐릭터 모드 준비 중!"))}
-          className="cursor-pointer group relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-zinc-900/80 border border-zinc-700/60 backdrop-blur-md flex items-center justify-center text-white hover:bg-purple-500 hover:border-purple-400 transition-all shadow-xl"
-        >
-          <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
+          onClick={() => window.open("https://www.instagram.com/nyangcode/", "_blank", "noopener,noreferrer")}
+         className="cursor-pointer group relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-zinc-900/80 border border-zinc-700/60 backdrop-blur-md flex items-center justify-center text-white hover:bg-purple-500 hover:border-purple-400 transition-all shadow-xl">
+         <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
         </button>
 
         <button
