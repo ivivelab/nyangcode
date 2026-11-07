@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   keywords: ["냥코드", "NyangCode", "부분의뢰", "막힌곳만 쏙", "웹개발", "앱개발", "업무자동화", "유지보수", "Nextjs", "코딩하는고양이"],
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-icon.png", // 아이폰 홈화면용 아이콘 (선택사항)
+    apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "냥코드 (NyangCode) | 1인 웹·앱 개발 & 업무 자동화 스튜디오",
-    description: "간식보다 코드가 더 짜릿한 개발 메이트 야니와 함께하는 고성능 디지털 스튜디오",
+    title: "냥코드 (NyangCode) | 웹·앱 개발 & 업무 자동화 스튜디오",
+    description: "간식보다 코드가 더 짜릿한 꾸꾸 함께하는 고성능 디지털 스튜디오",
     url: "https://nyangcode.com",
     siteName: "냥코드",
     locale: "ko_KR",
@@ -30,7 +30,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+// Next.js App Router 표준 방식의 뷰포트 설정 (모바일 확대/축소 고정)
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="ko"
