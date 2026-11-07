@@ -45,7 +45,7 @@ export default function Page() {
         {/* 1번: ABOUT */}
         <ImageTextSection
           title="ABOUT NYANGCODE"
-          description={`간식보다 코드가 더 짜릿한 개발 메이트 꾸꾸와 함께\n기획부터 배포까지 비즈니스 로직도 깔끔하게 풀어냅니다.`}
+          description={`간식보다 코드가 더 짜릿한 꾸꾸와\n기획부터 배포까지 로직도 깔끔하게 풀어냅니다.`}
         />
 
         {/* 2번: SERVICES */}

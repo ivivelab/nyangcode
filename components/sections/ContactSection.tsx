@@ -117,11 +117,11 @@ export default function ContactSection() {
         </span>
 
         <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-white">
-          새로운 비전을 함께 만들어볼까요?
+          비전을 함께 만들어볼까요?
         </h2>
 
         <p className="text-sm md:text-base text-zinc-300 font-light mb-8">
-          웹개발, 앱 제작, 업무 자동화까지. 냥코드가 든든한 파트너가 되어드릴게요.
+          냥코드가 든든한 파트너가 되어드릴게요.
         </p>
 
         {/* 문의 폼 */}
@@ -202,9 +202,12 @@ export default function ContactSection() {
                 <option value="유지보수">
                   유지보수
                 </option>
+                <option value="부분의뢰">
+                  부분의뢰
+                </option>
                 <option value="기타">
                   기타
-                </option>
+                </option>                
               </select>
             </div>
 
