@@ -67,6 +67,7 @@ export default function CharacterGallerySection() {
     <div
       ref={containerRef}
       onWheel={handleWheel}
+      data-inner-scroll
       className="relative w-full h-full text-white overflow-y-auto px-6 md:px-16 py-16 bg-cover bg-center select-none"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(13, 13, 18, 0.92), rgba(13, 13, 18, 0.98)), url('/images/portfolio.png')`,
