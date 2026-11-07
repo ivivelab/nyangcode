@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useRef } from 'react';
 
 interface GalleryItem {
   id: number;
@@ -9,7 +8,6 @@ interface GalleryItem {
   image: string;
 }
 
-// 1. 주요 프로젝트 (Selected Works - 상단 그리드용)
 const MAIN_WORKS: GalleryItem[] = [
   { id: 1, title: 'Shinhan Bank VML', image: '/images/portfolio_01.png' },
   { id: 2, title: 'Ahnlab Ad', image: '/images/portfolio_02.png' },
@@ -23,7 +21,6 @@ const MAIN_WORKS: GalleryItem[] = [
   { id: 10, title: 'Saemaul HQ', image: '/images/portfolio_10.png' },
 ];
 
-// 2. 서브 아카이브 목록 (Full Archive Index - 하단 그리드용)
 const SUB_ARCHIVES: GalleryItem[] = [
   { id: 11, title: 'NH Sports Group', image: '/images/sub-portfolio-01.jpg' },
   { id: 12, title: 'VENEBLUE Walkerhill', image: '/images/sub-portfolio-02.jpg' },
@@ -46,17 +43,39 @@ const SUB_ARCHIVES: GalleryItem[] = [
 ];
 
 export default function CharacterGallerySection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // 안쪽 스크롤 영역에서 마우스 휠 이벤트가 바깥쪽 풀스크롤로 튀는 것 방지
+  const handleWheel = (e: React.WheelEvent) => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = element;
+    const isAtTop = scrollTop === 0;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+    // 맨 위에인데 위로 올리려고 하거나, 맨 아래인데 아래로 내리려고 할 때만 풀페이지 스크롤 허용
+    if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+      return;
+    }
+
+    // 그 외의 경우는 안쪽 컨테이너 자체 스크롤이 정상 작동하도록 전파 유지
+    e.stopPropagation();
+  };
+
   return (
     <div
-      className="relative w-screen h-screen text-white overflow-y-auto px-6 md:px-16 py-20 bg-cover bg-center select-none"
+      ref={containerRef}
+      onWheel={handleWheel}
+      className="relative w-full h-full text-white overflow-y-auto px-6 md:px-16 py-16 bg-cover bg-center select-none"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(13, 13, 18, 0.92), rgba(13, 13, 18, 0.98)), url('/images/portfolio.png')`,
       }}
     >
-      <div className="max-w-7xl mx-auto w-full z-15 relative">
+      <div className="max-w-7xl mx-auto w-full relative pb-20">
         
         {/* 상단: Selected Works 헤더 */}
-        <div className="mb-10">
+        <div className="mb-8 pt-4">
           <span className="text-xs font-bold tracking-[0.25em] text-amber-500 uppercase block mb-1">
             PORTFOLIO EVIDENCE
           </span>
@@ -98,7 +117,7 @@ export default function CharacterGallerySection() {
             FULL ARCHIVE INDEX ({SUB_ARCHIVES.length} SELECTED)
           </h3>
 
-          {/* 6열 슬림 그리드 (레퍼런스 구조 반영) */}
+          {/* 6열 슬림 그리드 */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {SUB_ARCHIVES.map((item) => (
               <div key={item.id} className="group cursor-pointer">
